@@ -3,6 +3,7 @@ import SwapApp, { constants, SwapInterface, util } from 'swap.app'
 import BigNumber from 'bignumber.js'
 import InputDataDecoder from 'ethereum-input-data-decoder'
 const debug = _debug('swap.core:swaps')
+import DEFAULT_CURRENCY_PARAMETERS from 'common/helpers/constants/DEFAULT_CURRENCY_PARAMETERS'
 
 class EthLikeSwap extends SwapInterface {
 
@@ -33,6 +34,7 @@ class EthLikeSwap extends SwapInterface {
    * @param {string}    options.address
    * @param {array}     options.abi
    * @param {number}    options.gasLimit
+   * @param {number}    options.gasPrice
    * @param {function}  options.fetchBalance
    */
   constructor(options) {
@@ -67,17 +69,19 @@ class EthLikeSwap extends SwapInterface {
       console.warn(`EthLikeSwap: "estimateGasPrice" is not a function. You will not be able use automatic mempool-based fee`)
     }
 
-    this.options        = options
-    this.address        = options.address
-    this.abi            = options.abi
+    this.options = options
+    this.address = options.address
+    this.abi = options.abi
 
-    this.coinName       = options.coinName
+    this.coinName = options.coinName
+    this._swapName = options.coinName
 
-    this._swapName      = options.coinName //constants.COINS.eth
+    this.gasLimit = options.gasLimit
+      || DEFAULT_CURRENCY_PARAMETERS.evmLike.limit.swap
+    this.gasPrice = options.gasPrice
+      || DEFAULT_CURRENCY_PARAMETERS.evmLike.price.fast
 
-    this.gasLimit       = options.gasLimit || 5e5
-    this.gasPrice       = options.gasPrice || 2e9
-    this.fetchBalance   = options.fetchBalance
+    this.fetchBalance = options.fetchBalance
     this.estimateGasPrice = options.estimateGasPrice || (() => {})
     this.sendTransaction = options.sendTransaction
   }

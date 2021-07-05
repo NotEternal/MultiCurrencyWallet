@@ -1,6 +1,6 @@
 import { constants } from 'swap.app'
 import EthLikeSwap from './EthLikeSwap'
-
+import DEFAULT_CURRENCY_PARAMETERS from 'common/helpers/constants/DEFAULT_CURRENCY_PARAMETERS'
 
 class ArbitrumSwap extends EthLikeSwap {
   constructor(options) {
@@ -10,7 +10,9 @@ class ArbitrumSwap extends EthLikeSwap {
       getWeb3Utils: `getArbitrumWeb3Utils`,
       getMyAddress: `getMyArbitrumAddress`,
       getParticipantAddress: `getParticipantArbitrumAddress`,
-      coinName: constants.COINS.arbeth
+      coinName: constants.COINS.arbeth,
+      gasLimit: DEFAULT_CURRENCY_PARAMETERS.arbeth.limit.swap,
+      gasPrice: DEFAULT_CURRENCY_PARAMETERS.arbeth.price.fast,
     }
     super(options)
   }

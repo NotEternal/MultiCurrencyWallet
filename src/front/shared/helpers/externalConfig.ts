@@ -52,7 +52,7 @@ const externalConfig = () => {
       eth: true,
       bnb: false,
       matic: false,
-      arbeth: false,
+      arbeth: true,
       ghost: true,
       next: true,
     },

@@ -3,7 +3,7 @@ export default {
     limit: {
       send: 630 * 1e3,
       // ? heed to check how much for swaps ?
-      swap: 4000 * 1e3,
+      swap: 1860 * 1e3,
     },
     price: {
       slow: 0.1 * 1e8,
@@ -15,7 +15,7 @@ export default {
     limit: {
       send: 21 * 1e3,
       contractInteract: 100 * 1e3,
-      swap: 70 * 1e3,
+      swap: 500 * 1e3,
     },
     price: {
       slow: 0.1 * 1e9,
