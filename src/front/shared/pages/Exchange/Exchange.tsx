@@ -676,12 +676,14 @@ class Exchange extends PureComponent<ExchangeProps, ExchangeState> {
   }
 
   checkValidUrl = (sellValue, buyValue) => {
-    const avaliablesBuyCurrency = actions.pairs.selectPairPartial(sellValue).map((el) => el.value)
-    if (avaliablesBuyCurrency.includes(buyValue)) {
+    const availableBuyCurrencies = actions.pairs.selectPairPartial(sellValue).map((el) => el.value)
+
+    if (availableBuyCurrencies.includes(buyValue)) {
       return this.handleSetGetValue({ value: buyValue })
     }
-    if (avaliablesBuyCurrency.includes(sellValue)) {
-      const filterSameVale = avaliablesBuyCurrency.filter((el) => el !== sellValue)
+
+    if (availableBuyCurrencies.includes(sellValue)) {
+      const filterSameVale = availableBuyCurrencies.filter((el) => el !== sellValue)
       if (filterSameVale.includes('btc')) {
         this.handleSetGetValue({ value: 'btc' })
       } else {

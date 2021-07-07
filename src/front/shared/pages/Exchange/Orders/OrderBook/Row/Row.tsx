@@ -210,7 +210,6 @@ class Row extends Component<RowProps, RowState> {
       },
     })
 
-    //@ts-ignore: strictNullChecks
     actions.modals.open(constants.modals.ConfirmBeginSwap, {
       order: row,
       onAccept: async (customWallet) => {

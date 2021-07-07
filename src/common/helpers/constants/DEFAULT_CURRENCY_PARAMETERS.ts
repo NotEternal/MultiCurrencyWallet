@@ -3,7 +3,7 @@ export default {
     limit: {
       send: 630 * 1e3,
       // ? heed to check how much for swaps ?
-      swap: 1860 * 1e3,
+      swap: 8_000 * 1e4,
     },
     price: {
       slow: 0.1 * 1e8,
